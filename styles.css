@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="نظام متكامل لإدارة الأعمال، الفواتير، المخزون، العملاء، والتقارير مع شات بوت داخلي"
+    />
+    <title>مسار | نظام إدارة الأعمال</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="container navbar">
+          <div class="brand-wrap">
+            <div class="brand-mark">م</div>
+            <div class="brand-text">مسار<span>.</span></div>
+          </div>
+
+          <nav class="nav">
+            <a href="#solutions">الحلول</a>
+            <a href="#features">المزايا</a>
+            <a href="#dashboard">لوحة التحكم</a>
+            <a href="#crm">CRM</a>
+            <a href="#contact">تواصل</a>
+          </nav>
+
+          <div class="nav-actions">
+            <button class="icon-btn" id="themeToggle" aria-label="تبديل النمط">☾</button>
+            <button class="secondary-btn" id="loginBtn">تسجيل الدخول</button>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero section">
+          <div class="container hero-grid">
+            <div class="hero-copy">
+              <span class="eyebrow">نظام متكامل | إدارة الشركات والأنشطة</span>
+              <h1>من الفكرة إلى التنفيذ، كل شيء في منصة واحدة.</h1>
+              <p>
+                منصة متكاملة لإدارة المبيعات، المخزون، العملاء، طلبات العمل، التقارير،
+                والعمليات التشغيلية، مع تجربة احترافية وسهلة الاستخدام للمستخدم.
+              </p>
+
+              <div class="cta-row">
+                <button class="primary-btn" id="ctaPrimary">احجز استشارة</button>
+                <button class="ghost-btn" id="demoBtn">عرض التجربة</button>
+              </div>
+
+              <div class="stats-inline">
+                <div><strong>+120</strong><span>مشروع</span></div>
+                <div><strong>24/7</strong><span>دعم</span></div>
+                <div><strong>99.9%</strong><span>استقرار</span></div>
+              </div>
+            </div>
+
+            <div class="hero-panel panel">
+              <div class="panel-header">
+                <span>مؤشرات الأداء</span>
+                <span class="live-pill"><i></i> مباشر</span>
+              </div>
+
+              <div class="kpis">
+                <div class="kpi-card">
+                  <small>المبيعات</small>
+                  <strong>₪ 196K</strong>
+                </div>
+                <div class="kpi-card">
+                  <small>الطلبات</small>
+                  <strong>318</strong>
+                </div>
+                <div class="kpi-card">
+                  <small>العملاء</small>
+                  <strong>1.2K</strong>
+                </div>
+                <div class="kpi-card">
+                  <small>الربح</small>
+                  <strong>28.4%</strong>
+                </div>
+              </div>
+
+              <div class="sparkline" aria-label="مخطط المبيعات">
+                <span style="height: 36%"></span>
+                <span style="height: 52%"></span>
+                <span style="height: 44%"></span>
+                <span style="height: 60%"></span>
+                <span style="height: 52%"></span>
+                <span style="height: 76%"></span>
+                <span style="height: 62%"></span>
+                <span style="height: 82%"></span>
+                <span style="height: 92%"></span>
+                <span style="height: 80%"></span>
+                <span style="height: 98%"></span>
+                <span style="height: 100%"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="solutions">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow small">الحلول</span>
+                <h2>ما الذي يقدمه النظام؟</h2>
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <article class="feature-card panel">
+                <div class="icon-box">🧾</div>
+                <h3>الكاشير والفواتير</h3>
+                <p>إصدار فواتير سريعة، خصومات، مرتجعات، وطباعتها بلمسة واحدة.</p>
+              </article>
+
+              <article class="feature-card panel">
+                <div class="icon-box">📦</div>
+                <h3>إدارة المخزون</h3>
+                <p>تتبع الكميات، التنبيهات عند القلة، الجرد، والتحذير من انتهاء الصنف.</p>
+              </article>
+
+              <article class="feature-card panel">
+                <div class="feature-card panel" style="padding:0;border:none;background:none;box-shadow:none;">
+                  <div class="icon-box">👥</div>
+                  <h3>العملاء والموردون</h3>
+                  <p>قاعدة بيانات كاملة مع أرصدة، ديون، سجل تعاملات، وتاريخ المشتريات.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="features">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow small">المزايا</span>
+                <h2>مزايا تمنح النظام قيمة حقيقية</h2>
+              </div>
+            </div>
+
+            <div class="feature-list">
+              <div class="feature-tile panel">
+                <div class="mini-emoji">🔐</div>
+                <div>
+                  <h4>الحماية والأمان</h4>
+                  <p>تشفير كلمات المرور، تسجيل الأنشطة، تحقق بخطوتين، ومعالجة آمنة.</p>
+                </div>
+              </div>
+
+              <div class="feature-tile panel">
+                <div class="mini-emoji">📊</div>
+                <div>
+                  <h4>لوحة تقارير</h4>
+                  <p>تقارير لحظية عن المبيعات، المكاسب، أصناف الطلبات، والموظفين.</p>
+                </div>
+              </div>
+
+              <div class="feature-tile panel">
+                <div class="mini-emoji">🤖</div>
+                <div>
+                  <h4>مساعد ذكي</h4>
+                  <p>محادثة داخلية تفهم أوامر المستخدم وتنفذها داخل النظام بآلية آمنة.</p>
+                </div>
+              </div>
+
+              <div class="feature-tile panel">
+                <div class="mini-emoji">📱</div>
+                <div>
+                  <h4>تجربة متجاوبة</h4>
+                  <p>واجهة عمل ممتازة على الهاتف والكمبيوتر بدون فقدان الأداء.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="dashboard">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow small">لوحة التحكم</span>
+                <h2>لوحة إدارة احترافية للمالك والموظفين</h2>
+              </div>
+            </div>
+
+            <div class="dashboard panel">
+              <div class="dashboard-topbar">
+                <div>
+                  <strong>لوحة تحكم المدير</strong>
+                </div>
+                <span class="status-tag">متصل الآن</span>
+              </div>
+
+              <div class="dashboard-grid">
+                <div class="main-panel">
+                  <div class="stat-grid">
+                    <div class="stat-card">
+                      <small>إجمالي المبيعات</small>
+                      <strong>₪ 196K</strong>
+                    </div>
+                    <div class="stat-card">
+                      <small>الطلبات</small>
+                      <strong>86</strong>
+                    </div>
+                    <div class="stat-card">
+                      <small>العملاء</small>
+                      <strong>1.2K</strong>
+                    </div>
+                    <div class="stat-card">
+                      <small>الربح</small>
+                      <strong>28.4%</strong>
+                    </div>
+                  </div>
+
+                  <div class="chart-box">
+                    <div class="bar-group">
+                      <div style="height: 38%"></div>
+                      <div style="height: 49%"></div>
+                      <div style="height: 55%"></div>
+                      <div style="height: 64%"></div>
+                      <div style="height: 58%"></div>
+                      <div style="height: 72%"></div>
+                      <div style="height: 82%"></div>
+                      <div style="height: 78%"></div>
+                      <div style="height: 90%"></div>
+                      <div style="height: 84%"></div>
+                      <div style="height: 94%"></div>
+                      <div style="height: 100%"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <aside class="side-panel">
+                  <h4>آخر النشاطات</h4>
+                  <ul>
+                    <li><strong>سارة:</strong> تحديث حالة الطلب #1048</li>
+                    <li><strong>أحمد:</strong> إضافة عميل جديد</li>
+                    <li><strong>محمد:</strong> إنشاء تقرير المبيعات</li>
+                    <li><strong>النظام:</strong> تفعيل 2FA للحسابات</li>
+                  </ul>
+                </aside>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="crm">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow small">CRM</span>
+                <h2>إدارة العملاء والطلبات</h2>
+              </div>
+            </div>
+
+            <div class="crm-grid">
+              <div class="table-box panel">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>اسم العميل</th>
+                      <th>نوع الخدمة</th>
+                      <th>الحالة</th>
+                      <th>الموظف</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>شركة النور</td>
+                      <td>حملة تسويقية</td>
+                      <td><span class="badge warning">قيد التنفيذ</span></td>
+                      <td>سارة</td>
+                    </tr>
+                    <tr>
+                      <td>مؤسسة الحكمة</td>
+                      <td>استشارات</td>
+                      <td><span class="badge neutral">جديد</span></td>
+                      <td>أحمد</td>
+                    </tr>
+                    <tr>
+                      <td>المتحدة للمقاولات</td>
+                      <td>تجهيز</td>
+                      <td><span class="badge success">مكتمل</span></td>
+                      <td>رنا</td>
+                    </tr>
+                    <tr>
+                      <td>لولو للتجارة</td>
+                      <td>إدارة سوشيال</td>
+                      <td><span class="badge danger">بانتظار العميل</span></td>
+                      <td>سامي</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="crm-side">
+                <div class="panel info-box">
+                  <h4>مؤشرات CRM</h4>
+                  <ul>
+                    <li>طلبات جديدة: 14</li>
+                    <li>تحديثات اليوم: 23</li>
+                    <li>عملاء جدد: 7</li>
+                    <li>متوسط التنفيذ: 12 يوم</li>
+                  </ul>
+                </div>
+
+                <div class="panel info-box">
+                  <h4>إشعارات تلقائية</h4>
+                  <ul>
+                    <li>تنبيه عند تأخير المهمة</li>
+                    <li>إخطار تغيّر حالة الطلب</li>
+                    <li>مذكّرات يومية للموظفين</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="chatbot-demo">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow small">المساعد الذكي</span>
+                <h2>محادثة داخلية ذكية داخل النظام</h2>
+              </div>
+            </div>
+
+            <div class="assistant-layout">
+              <div class="assistant-panel panel">
+                <div class="assistant-header">
+                  <div class="assistant-badge">AI</div>
+                  <div>
+                    <strong>مساعد مسار</strong>
+                    <small>مستعد لما تحتاجه</small>
+                  </div>
+                </div>
+
+                <div class="chat-box" id="chatBox">
+                  <div class="msg msg-bot">
+                    مرحباً! أستطيع مساعدتك في إنشاء فاتورة، إظهار تقرير المبيعات، أو
+                    البحث عن عميل محدد.
+                  </div>
+                  <div class="msg msg-user">أرني مبيعات اليوم</div>
+                  <div class="msg msg-bot">
+                    تم جمع البيانات. المبيعات اليوم وصلت إلى 12,450 ريال، بزيادة 14٪ مقارنة بالأمس.
+                  </div>
+                </div>
+
+                <div class="chat-input-row">
+                  <input type="text" id="chatInput" placeholder="اكتب طلبك هنا..." />
+                  <button id="sendChat">إرسال</button>
+                </div>
+              </div>
+
+              <div class="assistant-actions panel">
+                <h4>الأوامر السريعة</h4>
+                <div class="quick-actions">
+                  <button>إظهار المبيعات</button>
+                  <button>إنشاء فاتورة</button>
+                  <button>تقرير المخزون</button>
+                  <button>بحث عن عميل</button>
+                </div>
+
+                <div class="bot-tips">
+                  <h5>نصائح</h5>
+                  <ul>
+                    <li>القرارات تُحسب من قاعدة البيانات فقط</li>
+                    <li>كل تعديل يمر عبر صلاحيات المستخدم</li>
+                    <li>العمليات الحساسة تحتاج تأكيداً مسبقاً</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="contact">
+          <div class="container">
+            <div class="section-head">
+              <div>
+                <span class="eyebrow small">تواصل معنا</span>
+                <h2>ابدأ مشروعك الآن</h2>
+              </div>
+            </div>
+
+            <div class="contact-grid">
+              <form class="contact-form panel" id="contactForm">
+                <div class="field">
+                  <label>الاسم</label>
+                  <input type="text" placeholder="اسم الشركة أو الشخص" required />
+                </div>
+                <div class="field">
+                  <label>البريد الإلكتروني</label>
+                  <input type="email" placeholder="yourmail@example.com" required />
+                </div>
+                <div class="field">
+                  <label>تفاصيل المشروع</label>
+                  <textarea placeholder="اكتب احتياجك، النشاط، وعدد الفروع..." required></textarea>
+                </div>
+                <button class="primary-btn" type="submit">إرسال الطلب</button>
+              </form>
+
+              <div class="contact-info panel">
+                <h4>معلومات التواصل</h4>
+                <ul>
+                  <li><strong>البريد</strong><span>info@masar-services.example</span></li>
+                  <li><strong>الهاتف</strong><span>+966 50 000 0000</span></li>
+                  <li><strong>الواتساب</strong><span>+966 50 000 0000</span></li>
+                  <li><strong>ساعات العمل</strong><span>من 10:00 إلى 18:00</span></li>
+                </ul>
+                <button class="whatsapp-btn">واتساب</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="container footer-inner">
+          <span>© 2026 مسار | جميع الحقوق محفوظة</span>
+        </div>
+      </footer>
+    </div>
+
+    <div class="modal-overlay" id="loginModal" aria-hidden="true">
+      <div class="login-modal panel" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+        <button class="close-modal" id="closeModal" aria-label="إغلاق">×</button>
+
+        <div class="modal-step active" id="loginStep">
+          <h3 id="loginTitle">تسجيل الدخول</h3>
+          <p>الدخول إلى لوحة التحكم</p>
+
+          <label class="field">
+            <span>البريد الإلكتروني</span>
+            <input type="email" value="admin@masar-services.example" />
+          </label>
+
+          <label class="field">
+            <span>كلمة المرور</span>
+            <input type="password" value="123456" />
+          </label>
+
+          <button class="primary-btn full" id="sendOtp">تسجيل الدخول</button>
+        </div>
+
+        <div class="modal-step" id="otpStep">
+          <h3>رمز التحقق</h3>
+          <p>تم إرسال الرمز إلى بريدك الإلكتروني</p>
+
+          <div class="otp-row">
+            <input maxlength="1" value="3" />
+            <input maxlength="1" value="8" />
+            <input maxlength="1" value="5" />
+            <input maxlength="1" value="1" />
+          </div>
+
+          <button class="primary-btn full" id="verifyOtp">تأكيد الرمز</button>
+        </div>
+
+        <div class="success-box" id="successBox">تم تسجيل الدخول بنجاح</div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
