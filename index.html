@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="نظام متكامل لإدارة الأعمال، الفواتير، المخزون، العملاء، الطلبات والتقارير مع شاحد بوت ذكي"
+    />
+    <title>مسار | نظام إدارة الأعمال المتكامل</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0c131a;
+  --bg-soft: #121c27;
+  --bg-alt: #0d1a24;
+  --panel: rgba(20, 31, 40, 0.9);
+  --panel-strong: #152533;
+  --card: #182a36;
+  --card-2: #1b2f3d;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.12);
+  --text: #edf4f8;
+  --muted: #a3b5c0;
+  --gold: #d8b06b;
+  --gold-deep: #bb8e48;
+  --green: #78d9ae;
+  --blue: #74b7ff;
+  --red: #f58a8a;
+  --warning: #f5bf73;
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --radius-lg: 26px;
+  --container: 1180px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Tajawal", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top right, rgba(216, 176, 107, 0.12), transparent 20%), linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+  color: var(--text);
+  line-height: 1.8;
+}
+
+body.light {
+  --bg: #eef4f6;
+  --bg-soft: #f7f9fa;
+  --bg-alt: #edf4f7;
+  --panel: rgba(255, 255, 255, 0.75);
+  --panel-strong: #ffffff;
+  --card: #f7fafb;
+  --card-2: #ecf1f4;
+  --line: rgba(17, 26, 34, 0.08);
+  --line-strong: rgba(17, 26, 34, 0.12);
+  --text: #1b2a34;
+  --muted: #5a6b74;
+  --gold: #b57d2c;
+  --gold-deep: #996b1f;
+  --green: #1f9f6a;
+  --blue: #2a6fd6;
+  --red: #d95d5d;
+  --warning: #c8902d;
+  --shadow: 0 18px 40px rgba(31, 52, 61, 0.12);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.page-shell {
+  min-height: 100vh;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 88px 0;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(14px);
+  background: rgba(12, 19, 26, 0.8);
+  border-bottom: 1px solid var(--line);
+}
+
+body.light .topbar {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 78px;
+  gap: 20px;
+}
+
+.brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--gold) 0%, #f1d8a0 100%);
+  color: #101820;
+  font-weight: 900;
+  box-shadow: var(--shadow);
+}
+
+.brand-text {
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+
+.brand-text span {
+  color: var(--gold);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.nav a {
+  transition: 0.2s ease;
+}
+
+.nav a:hover {
+  color: var(--gold);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-btn, .secondary-btn, .primary-btn, .ghost-btn, .whatsapp-btn, .quick-actions button, #sendChat {
+  border: none;
+  border-radius: 12px;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.icon-btn, .secondary-btn, .ghost-btn, .whatsapp-btn, .quick-actions button, #sendChat {
+  padding: 10px 16px;
+  font-weight: 700;
+}
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.secondary-btn, .ghost-btn, .quick-actions button, #sendChat {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+}
+
+.primary-btn, .whatsapp-btn {
+  padding: 14px 22px;
+  background: linear-gradient(135deg, var(--gold) 0%, #f0d39b 100%);
+  color: #10171e;
+  font-weight: 800;
+  box-shadow: var(--shadow);
+}
+
+.ghost-btn {
+  background: transparent;
+}
+
+.primary-btn:hover, .secondary-btn:hover, .ghost-btn:hover, .icon-btn:hover, .whatsapp-btn:hover, .quick-actions button:hover, #sendChat:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
+
+.hero {
+  padding-top: 60px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(216, 176, 107, 0.09);
+  border: 1px solid rgba(216, 176, 107, 0.25);
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.eyebrow.small {
+  font-size: 0.78rem;
+  margin-bottom: 10px;
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 4.3rem);
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  max-width: 640px;
+}
+
+.hero-copy p {
+  margin: 18px 0 26px;
+  max-width: 580px;
+  color: var(--muted);
+  font-size: 1.12rem;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.stats-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  color: var(--muted);
+}
+
+.stats-inline div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 90px;
+}
+
+.stats-inline strong {
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.hero-panel {
+  padding: 24px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(120, 217, 174, 0.1);
+  color: var(--green);
+  border: 1px solid rgba(120, 217, 174, 0.3);
+  font-size: 0.8rem;
+}
+
+.live-pill i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  display: inline-block;
+  box-shadow: 0 0 0 5px rgba(120, 217, 174, 0.12);
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.kpi-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 14px;
+}
+
+.kpi-card small {
+  display: block;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.kpi-card strong {
+  font-size: 1.5rem;
+  color: var(--gold);
+}
+
+.sparkline {
+  margin-top: 18px;
+  height: 116px;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: end;
+  gap: 8px;
+  padding: 14px 8px 4px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.sparkline span {
+  border-radius: 9px 9px 0 0;
+  background: linear-gradient(180deg, #f1d39d 0%, #b57d2c 100%);
+  min-height: 12px;
+}
+
+.section-head {
+  margin-bottom: 28px;
+}
+
+.section-head h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.7rem);
+  line-height: 1.2;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.feature-card {
+  padding: 26px 22px;
+}
+
+.icon-box {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(216, 176, 107, 0.1);
+  border: 1px solid rgba(216, 176, 107, 0.25);
+  color: var(--gold);
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+}
+
+.feature-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.3rem;
+}
+
+.feature-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.feature-tile {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 22px 20px;
+}
+
+.mini-emoji {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(116, 183, 255, 0.08);
+  border: 1px solid rgba(116, 183, 255, 0.2);
+  font-size: 1.5rem;
+}
+
+.feature-tile h4 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.feature-tile p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.dashboard {
+  padding: 0;
+  overflow: hidden;
+}
+
+.dashboard-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(120, 217, 174, 0.12);
+  border: 1px solid rgba(120, 217, 174, 0.2);
+  color: var(--green);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+}
+
+.main-panel, .side-panel {
+  padding: 24px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 12px;
+}
+
+.stat-card small {
+  display: block;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.stat-card strong {
+  font-size: 1.5rem;
+  color: var(--gold);
+}
+
+.chart-box {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 14px 10px 0;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.bar-group {
+  height: 180px;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 10px;
+  align-items: end;
+}
+
+.bar-group div {
+  border-radius: 10px 10px 0 0;
+  background: linear-gradient(180deg, #f5d69e 0%, #b57d2c 100%);
+  min-height: 20px;
+}
+
+.side-panel {
+  border-right: 0;
+  border-left: 1px solid var(--line);
+}
+
+.side-panel h4 {
+  margin: 0 0 12px;
+  font-size: 1.2rem;
+}
+
+.side-panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+  color: var(--muted);
+}
+
+.side-panel li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.crm-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 18px;
+}
+
+.table-box {
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+}
+
+th {
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.badge.warning {
+  background: rgba(245, 191, 115, 0.12);
+  color: var(--warning);
+  border: 1px solid rgba(245, 191, 115, 0.18);
+}
+
+.badge.neutral {
+  background: rgba(116, 183, 255, 0.12);
+  color: var(--blue);
+  border: 1px solid rgba(116, 183, 255, 0.18);
+}
+
+.badge.success {
+  background: rgba(120, 217, 174, 0.12);
+  color: var(--green);
+  border: 1px solid rgba(120, 217, 174, 0.2);
+}
+
+.badge.danger {
+  background: rgba(245, 138, 138, 0.12);
+  color: var(--red);
+  border: 1px solid rgba(245, 138, 138, 0.2);
+}
+
+.crm-side {
+  display: grid;
+  gap: 18px;
+}
+
+.info-box {
+  padding: 20px;
+}
+
+.info-box h4 {
+  margin: 0 0 12px;
+  font-size: 1.2rem;
+}
+
+.info-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+  color: var(--muted);
+}
+
+.assistant-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 18px;
+}
+
+.assistant-panel, .assistant-actions {
+  padding: 18px;
+}
+
+.assistant-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.assistant-badge {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), #f1d8a0);
+  color: #111;
+  font-weight: 900;
+}
+
+.assistant-header strong, .assistant-header small {
+  display: block;
+}
+
+.assistant-header small {
+  color: var(--muted);
+}
+
+.chat-box {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px;
+  overflow-y: auto;
+}
+
+.msg {
+  max-width: 80%;
+  padding: 12px 14px;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.msg-bot {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+
+.msg-user {
+  align-self: flex-end;
+  background: rgba(216, 176, 107, 0.12);
+  border: 1px solid rgba(216, 176, 107, 0.2);
+  color: var(--text);
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.chat-input-row input {
+  flex: 1;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  color: var(--text);
+  padding: 12px 14px;
+}
+
+#sendChat {
+  padding-inline: 18px;
+}
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.quick-actions button {
+  width: 100%;
+  text-align: center;
+}
+
+.bot-tips {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.bot-tips h5 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+}
+
+.bot-tips ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+  color: var(--muted);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 18px;
+}
+
+.contact-form {
+  padding: 20px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.field label, .field span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.field input, .field textarea {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-info {
+  padding: 20px;
+}
+
+.contact-info h4 {
+  margin: 0 0 18px;
+  font-size: 1.25rem;
+}
+
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  display: grid;
+  gap: 12px;
+  color: var(--muted);
+}
+
+.contact-info li {
+  display: grid;
+  gap: 4px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-info strong {
+  color: var(--text);
+}
+
+.footer {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  padding: 24px 0 34px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  background: rgba(5, 10, 14, 0.7);
+  z-index: 40;
+  padding: 18px;
+}
+
+.modal-overlay.open {
+  display: grid;
+}
+
+.login-modal {
+  width: min(420px, 92vw);
+  padding: 24px 22px;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  background: transparent;
+  color: var(--muted);
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.modal-step {
+  display: none;
+}
+
+.modal-step.active {
+  display: block;
+}
+
+.login-modal h3 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+}
+
+.login-modal p {
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+
+.login-modal .field {
+  margin-bottom: 16px;
+}
+
+.login-modal input {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.full {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.otp-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0 12px;
+}
+
+.otp-row input {
+  height: 58px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.success-box {
+  display: none;
+  margin-top: 14px;
+  background: rgba(120, 217, 174, 0.1);
+  border: 1px solid rgba(120, 217, 174, 0.2);
+  color: var(--green);
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.success-box.show {
+  display: block;
+}
+
+.cert-badges {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.cert-badge {
+  text-align: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.cert-badge strong {
+  display: block;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.cert-badge small {
+  color: var(--muted);
+}
+
+@media (max-width: 980px) {
+  .hero-grid,
+  .dashboard-grid,
+  .crm-grid,
+  .assistant-layout,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-3,
+  .feature-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .nav {
+    display: none;
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .quick-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 68px 0;
+  }
+}
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">\n        <div class="container navbar">\n          <div class="brand-wrap">\n            <div class="brand-mark">م</div>\n            <div class="brand-text">مسار<span>.</span></div>\n          </div>\n\n          <nav class="nav">\n            <a href="#solutions">الحلول</a>\n            <a href="#features">المزايا</a>\n            <a href="#dashboard">لوحة التحكم</a>\n            <a href="#crm">CRM</a>\n            <a href="#contact">تواصل</a>\n          </nav>\n\n          <div class="nav-actions">\n            <button class="icon-btn" id="themeToggle" aria-label="تبديل النمط">☾</button>\n            <button class="secondary-btn" id="loginBtn">تسجيل الدخول</button>\n          </div>\n        </div>\n      </header>\n\n      <main>\n        <section class="hero section">\n          <div class="container hero-grid">\n            <div class="hero-copy">\n              <span class=\"eyebrow\">نظام متكامل | إدارة الشركات والأنشطة</span>\n              <h1>من الفكرة إلى التنفيذ، كل شيء في منصة واحدة.</h1>\n              <p>\n                منصة متكاملة لإدارة المبيعات، المخزون، العملاء، طلبات العمل، التقارير،\nوالعمليات التشغيلية، مع تجربة احترافية وسهلة الاستخدام للمستخدم.\n              </p>\n\n              <div class=\"cta-row\">\n                <button class=\"primary-btn\" id=\"ctaPrimary\">احجز استشارة</button>\n                <button class=\"ghost-btn\" id=\"demoBtn\">عرض التجربة</button>\n              </div>\n\n              <div class=\"stats-inline\">\n                <div><strong>+120</strong><span>مشروع</span></div>\n                <div><strong>24/7</strong><span>دعم</span></div>\n                <div><strong>99.9%</strong><span>استقرار</span></div>\n              </div>\n            </div>\n\n            <div class=\"hero-panel panel\">\n              <div class=\"panel-header\">\n                <span>مؤشرات الأداء</span>\n                <span class=\"live-pill\"><i></i> مباشر</span>\n              </div>\n\n              <div class=\"kpis\">\n                <div class=\"kpi-card\">\n                  <small>المبيعات</small>\n                  <strong>₪ 196K</strong>\n                </div>\n                <div class=\"kpi-card\">\n                  <small>الطلبات</small>\n                  <strong>318</strong>\n                </div>\n                <div class=\"kpi-card\">\n                  <small>العملاء</small>\n                  <strong>1.2K</strong>\n                </div>\n                <div class=\"kpi-card\">\n                  <small>الربح</small>\n                  <strong>28.4%</strong>\n                </div>\n              </div>\n\n              <div class=\"sparkline\" aria-label=\"مخطط المبيعات\">\n                <span style=\"height: 36%\"></span>\n                <span style=\"height: 52%\"></span>\n                <span style=\"height: 44%\"></span>\n                <span style=\"height: 60%\"></span>\n                <span style=\"height: 52%\"></span>\n                <span style=\"height: 76%\"></span>\n                <span style=\"height: 62%\"></span>\n                <span style=\"height: 82%\"></span>\n                <span style=\"height: 92%\"></span>\n                <span style=\"height: 80%\"></span>\n                <span style=\"height: 98%\"></span>\n                <span style=\"height: 100%\"></span>\n              </div>\n            </div>\n          </div>\n        </section>\n\n        <section class=\"section\" id=\"solutions\">\n          <div class=\"container\">\n            <div class=\"section-head\">\n              <div>\n                <span class=\"eyebrow small\">الحلول</span>\n                <h2>ما الذي يقدمه النظام؟</h2>\n              </div>\n            </div>\n\n            <div class=\"grid-3\">\n              <article class=\"feature-card panel\">\n                <div class=\"icon-box\">🏪</div>\n                <h3>الكاشير والفواتير</h3>\n                <p>إصدار فواتير سريعة، خصومات، مرتجعات، وطباعتها بلمسة واحدة.</p>\n              </article>\n\n              <article class=\"feature-card panel\">\n                <div class=\"icon-box\">📦</div>\n                <h3>إدارة المخزون</h3>\n                <p>تتبع الكميات، التنبيهات عند القلة، الجرد، والتحذير من انتهاء الصنف.</p>\n              </article>\n\n              <article class=\"feature-card panel\">\n                <div class=\"icon-box\">👥</div>\n                <h3>العملاء والموردون</h3>\n                <p>قاعدة بيانات كاملة مع أرصدة، ديون، سجل تعاملات، وتاريخ المشتريات.</p>\n              </article>\n            </div>\n          </div>\n        </section>\n\n        <section class=\"section\" id=\"features\">\n          <div class=\"container\">\n            <div class=\"section-head\">\n              <div>\n                <span class=\"eyebrow small\">المزايا</span>\n                <h2>مزايا تمنح النظام قيمة حقيقية</h2>\n              </div>\n            </div>\n\n            <div class=\"feature-list\">\n              <div class=\"feature-tile panel\">\n                <div class=\"mini-emoji\">🔐</div>\n                <div>\n                  <h4>الحماية والأمان</h4>\n                  <p>تشفير كلمات المرور، تسجيل الأنشطة، تحقق بخطوتين، ومعالجة آمنة.</p>\n                </div>\n              </div>\n\n              <div class=\"feature-tile panel\">\n                <div class=\"mini-emoji\">📊</div>\n                <div>\n                  <h4>لوحة تقارير</h4>\n                  <p>تقارير لحظية عن المبيعات، المكاسب، أصناف الطلبات، والموظفين.</p>\n                </div>\n              </div>\n\n              <div class=\"feature-tile panel\">\n                <div class=\"mini-emoji\">🤖</div>\n                <div>\n                  <h4>مساعد ذكي</h4>\n                  <p>محادثة داخلية تفهم أوامر المستخدم وتنفذها آمنة داخل النظام.</p>\n                </div>\n              </div>\n\n              <div class=\"feature-tile panel\">\n                <div class=\"mini-emoji\">📱</div>\n                <div>\n                  <h4>تجربة متجاوبة</h4>\n                  <p>واجهة عمل ممتازة على الهاتف والكمبيوتر بدون فقدان الأداء.</p>\n                </div>\n              </div>\n            </div>\n          </div>\n        </section>\n\n        <section class=\"section\" id=\"dashboard\">\n          <div class=\"container\">\n            <div class=\"section-head\">\n              <div>\n                <span class=\"eyebrow small\">لوحة التحكم</span>\n                <h2>لوحة إدارة احترافية للمالك والموظفين</h2>\n              </div>\n            </div>\n\n            <div class=\"dashboard panel\">\n              <div class=\"dashboard-topbar\">\n                <div>\n                  <strong>لوحة تحكم المدير</strong>\n                </div>\n                <span class=\"status-tag\">متصل الآن</span>\n              </div>\n\n              <div class=\"dashboard-grid\">\n                <div class=\"main-panel\">\n                  <div class=\"stat-grid\">\n                    <div class=\"stat-card\">\n                      <small>إجمالي المبيعات</small>\n                      <strong>₪ 196K</strong>\n                    </div>\n                    <div class=\"stat-card\">\n                      <small>الطلبات</small>\n                      <strong>86</strong>\n                    </div>\n                    <div class=\"stat-card\">\n                      <small>العملاء</small>\n                      <strong>1.2K</strong>\n                    </div>\n                    <div class=\"stat-card\">\n                      <small>الربح</small>\n                      <strong>28.4%</strong>\n                    </div>\n                  </div>\n\n                  <div class=\"chart-box\">\n                    <div class=\"bar-group\">\n                      <div style=\"height: 38%\"></div>\n                      <div style=\"height: 49%\"></div>\n                      <div style=\"height: 55%\"></div>\n                      <div style=\"height: 64%\"></div>\n                      <div style=\"height: 58%\"></div>\n                      <div style=\"height: 72%\"></div>\n                      <div style=\"height: 82%\"></div>\n                      <div style=\"height: 78%\"></div>\n                      <div style=\"height: 90%\"></div>\n                      <div style=\"height: 84%\"></div>\n                      <div style=\"height: 94%\"></div>\n                      <div style=\"height: 100%\"></div>\n                    </div>\n                  </div>\n                </div>\n\n                <aside class=\"side-panel\">\n                  <h4>آخر النشاطات</h4>\n                  <ul>\n                    <li><strong>سارة:</strong> تحديث حالة الطلب #1048</li>\n                    <li><strong>أحمد:</strong> إضافة عميل جديد</li>\n                    <li><strong>محمد:</strong> إنشاء تقرير المبيعات</li>\n                    <li><strong>النظام:</strong> تفعيل 2FA للحسابات</li>\n                  </ul>\n                </aside>\n              </div>\n            </div>\n          </div>\n        </section>\n\n        <section class=\"section\" id=\"crm\">\n          <div class=\"container\">\n            <div class=\"section-head\">\n              <div>\n                <span class=\"eyebrow small\">CRM</span>\n                <h2>إدارة العملاء والطلبات</h2>\n              </div>\n            </div>\n\n            <div class=\"crm-grid\">\n              <div class=\"table-box panel\">\n                <table>\n                  <thead>\n                    <tr>\n                      <th>اسم العميل</th>\n                      <th>نوع الخدمة</th>\n                      <th>الحالة</th>\n                      <th>الموظف</th>\n                    </tr>\n                  </thead>\n                  <tbody>\n                    <tr>\n                      <td>شركة النور</td>\n                      <td>حملة تسويقية</td>\n                      <td><span class=\"badge warning\">قيد التنفيذ</span></td>\n                      <td>سارة</td>\n                    </tr>\n                    <tr>\n                      <td>مؤسسة الحكمة</td>\n                      <td>استشارات</td>\n                      <td><span class=\"badge neutral\">جديد</span></td>\n                      <td>أحمد</td>\n                    </tr>\n                    <tr>\n                      <td>المتحدة للمقاولات</td>\n                      <td>تجهيز</td>\n                      <td><span class=\"badge success\">مكتمل</span></td>\n                      <td>رنا</td>\n                    </tr>\n                    <tr>\n                      <td>لولو للتجارة</td>\n                      <td>إدارة سوشيال</td>\n                      <td><span class=\"badge danger\">بانتظار العميل</span></td>\n                      <td>سامي</td>\n                    </tr>\n                  </tbody>\n                </table>\n              </div>\n\n              <div class=\"crm-side\">\n                <div class=\"panel info-box\">\n                  <h4>مؤشرات CRM</h4>\n                  <ul>\n                    <li>طلبات جديدة: 14</li>\n                    <li>تحديثات اليوم: 23</li>\n                    <li>عملاء جدد: 7</li>\n                    <li>متوسط المدة: 12 يوم</li>\n                  </ul>\n                </div>\n\n                <div class=\"panel info-box\">\n                  <h4>إشعارات تلقائية</h4>\n                  <ul>\n                    <li>تنبيه عند تأخير المهمة</li>\n                    <li>إخطار تغيير حالة الطلب</li>\n                    <li>مذكرات يومية للموظفين</li>\n                  </ul>\n                </div>\n              </div>\n            </div>\n          </div>\n        </section>\n\n        <section class=\"section\" id=\"chatbot-demo\">\n          <div class=\"container\">\n            <div class=\"section-head\">\n              <div>\n                <span class=\"eyebrow small\">المساعد الذكي</span>\n                <h2>محادثة ذكية داخل النظام</h2>\n              </div>\n            </div>\n\n            <div class=\"assistant-layout\">\n              <div class=\"assistant-panel panel\">\n                <div class=\"assistant-header\">\n                  <div class=\"assistant-badge\">AI</div>\n                  <div>\n                    <strong>مساعد مسار</strong>\n                    <small>مستعد لما تحتاجه</small>\n                  </div>\n                </div>\n\n                <div class=\"chat-box\" id=\"chatBox\">\n                  <div class=\"msg msg-bot\">\n مرحباً! أستطيع مساعدتك في إنشاء فاتورة، إظهار تقرير المبيعات، أو البحث عن عميل محدد.\n                  </div>\n                  <div class=\"msg msg-user\">أرني مبيعات اليوم</div>\n                  <div class=\"msg msg-bot\">\n تم جمع البيانات. المبيعات اليوم وصلت إلى 12,450 ريال، بزيادة 14% مقارنة بالأمس.\n                  </div>\n                </div>\n\n                <div class=\"chat-input-row\">\n                  <input type=\"text\" id=\"chatInput\" placeholder=\"اكتب طلبك هنا...\" />\n                  <button id=\"sendChat\">إرسال</button>\n                </div>\n              </div>\n\n              <div class=\"assistant-actions panel\">\n                <h4>الأوامر السريعة</h4>\n                <div class=\"quick-actions\">\n                  <button>إظهار المبيعات</button>\n                  <button>إنشاء فاتورة</button>\n                  <button>تقرير المخزون</button>\n                  <button>بحث عميل</button>\n                </div>\n\n                <div class=\"bot-tips\">\n                  <h5>نصائح</h5>\n                  <ul>\n                    <li>الأرقام تُحسب من قاعدة البيانات</li>\n                    <li>كل تعديل يمر عبر صلاحيات المستخدم</li>\n                    <li>العمليات الحساسة تحتاج تأكيداً</li>\n                  </ul>\n                </div>\n              </div>\n            </div>\n          </div>\n        </section>\n\n        <section class=\"section\" id=\"contact\">\n          <div class=\"container\">\n            <div class=\"section-head\">\n              <div>\n                <span class=\"eyebrow small\">تواصل معنا</span>\n                <h2>ابدأ مشروعك الآن</h2>\n              </div>\n            </div>\n\n            <div class=\"contact-grid\">\n              <form class=\"contact-form panel\" id=\"contactForm\">\n                <div class=\"field\">\n                  <label>الاسم</label>\n                  <input type=\"text\" placeholder=\"اسم الشركة أو الشخص\" required />\n                </div>\n                <div class=\"field\">\n                  <label>البريد الإلكتروني</label>\n                  <input type=\"email\" placeholder=\"your@email.com\" required />\n                </div>\n                <div class=\"field\">\n                  <label>تفاصيل المشروع</label>\n                  <textarea placeholder=\"اكتب احتياجك، النشاط، وعدد الفروع...\" required></textarea>\n                </div>\n                <button class=\"primary-btn full\" type=\"submit\">إرسال الطلب</button>\n              </form>\n\n              <div class=\"contact-info panel\">\n                <h4>معلومات التواصل</h4>\n                <ul>\n                  <li>\n                    <strong>البريد الإلكتروني</strong>\n                    <span>contact@masar-solutions.com</span>\n                  </li>\n                  <li>\n                    <strong>الهاتف</strong>\n                    <span>+966 55 123 4567</span>\n                  </li>\n                  <li>\n                    <strong>الواتساب</strong>\n                    <span>+966 55 123 4567</span>\n                  </li>\n                  <li>\n                    <strong>ساعات العمل</strong>\n                    <span>الأحد - الخميس: 9:00 - 18:00</span>\n                  </li>\n                </ul>\n\n                <button class=\"whatsapp-btn full\" onclick=\"window.open('https://wa.me/966551234567?text=مرحباً، أود معرفة المزيد عن نظام مسار', '_blank')\">فتح واتساب</button>\n\n                <div class=\"cert-badges\">\n                  <div class=\"cert-badge\">\n                    <strong>🔒</strong>\n                    <small>SSL Certified</small>\n                  </div>\n                  <div class=\"cert-badge\">\n                    <strong>✓</strong>\n                    <small>Data Protected</small>\n                  </div>\n                  <div class=\"cert-badge\">\n                    <strong>★</strong>\n                    <small>Support 24/7</small>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </section>\n      </main>\n\n      <footer class=\"footer\">\n        <div class=\"container footer-inner\">\n          <span>© 2026 مسار | جميع الحقوق محفوظة | نظام إدارة أعمال متكامل</span>\n        </div>\n      </footer>\n    </div>\n\n    <div class=\"modal-overlay\" id=\"loginModal\" aria-hidden=\"true\">\n      <div class=\"login-modal panel\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"loginTitle\">\n        <button class=\"close-modal\" id=\"closeModal\" aria-label=\"إغلاق\">×</button>\n\n        <div class=\"modal-step active\" id=\"loginStep\">\n          <h3 id=\"loginTitle\">تسجيل الدخول</h3>\n          <p>الدخول إلى لوحة التحكم</p>\n\n          <label class=\"field\">\n            <span>البريد الإلكتروني</span>\n            <input type=\"email\" value=\"admin@masar-solutions.com\" />\n          </label>\n\n          <label class=\"field\">\n            <span>كلمة المرور</span>\n            <input type=\"password\" value=\"123456\" />\n          </label>\n\n          <button class=\"primary-btn full\" id=\"sendOtp\">تسجيل الدخول</button>\n        </div>\n\n        <div class=\"modal-step\" id=\"otpStep\">\n          <h3>رمز التحقق</h3>\n          <p>تم إرسال الرمز إلى بريدك الإلكتروني</p>\n\n          <div class=\"otp-row\">\n            <input maxlength=\"1\" value=\"3\" />\n            <input maxlength=\"1\" value=\"8\" />\n            <input maxlength=\"1\" value=\"5\" />\n            <input maxlength=\"1\" value=\"1\" />\n          </div>\n\n          <button class=\"primary-btn full\" id=\"verifyOtp\">تأكيد الرمز</button>\n        </div>\n\n        <div class=\"success-box\" id=\"successBox\">تم تسجيل الدخول بنجاح</div>\n      </div>\n    </div>\n\n    <script>\nconst loginBtn = document.getElementById('loginBtn');\nconst loginModal = document.getElementById('loginModal');\nconst closeModal = document.getElementById('closeModal');\nconst sendOtp = document.getElementById('sendOtp');\nconst verifyOtp = document.getElementById('verifyOtp');\nconst loginStep = document.getElementById('loginStep');\nconst otpStep = document.getElementById('otpStep');\nconst successBox = document.getElementById('successBox');\nconst themeToggle = document.getElementById('themeToggle');\nconst demoBtn = document.getElementById('demoBtn');\nconst ctaPrimary = document.getElementById('ctaPrimary');\nconst contactForm = document.getElementById('contactForm');\n\nloginBtn.addEventListener('click', () => {\n  loginModal.classList.add('open');\n});\n\ncloseModal.addEventListener('click', () => {\n  loginModal.classList.remove('open');\n});\n\nloginModal.addEventListener('click', (e) => {\n  if (e.target === loginModal) loginModal.classList.remove('open');\n});\n\nsendOtp.addEventListener('click', () => {\n  loginStep.style.display = 'none';\n  otpStep.style.display = 'block';\n});\n\nverifyOtp.addEventListener('click', () => {\n  successBox.classList.add('show');\n  setTimeout(() => {\n    loginModal.classList.remove('open');\n    successBox.classList.remove('show');\n    loginStep.style.display = 'block';\n    otpStep.style.display = 'none';\n  }, 1200);\n});\n\nthemeToggle.addEventListener('click', () => {\n  document.body.classList.toggle('light');\n  themeToggle.textContent = document.body.classList.contains('light') ? '☀' : '☾';\n});\n\ndemoBtn.addEventListener('click', () => {\n  document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });\n});\n\nctaPrimary.addEventListener('click', () => {\n  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });\n});\n\ncontactForm.addEventListener('submit', (e) => {\n  e.preventDefault();\n  alert('شكراً على الطلب! سيتم التواصل معك قريباً.');\n  contactForm.reset();\n});\n\nconst sendChat = document.getElementById('sendChat');\nconst chatInput = document.getElementById('chatInput');\nconst chatBox = document.getElementById('chatBox');\n\nsendChat.addEventListener('click', () => {\n  const text = chatInput.value.trim();\n  if (text) {\n    const userMsg = document.createElement('div');\n    userMsg.className = 'msg msg-user';\n    userMsg.textContent = text;\n    chatBox.appendChild(userMsg);\n    \n    setTimeout(() => {\n      const botMsg = document.createElement('div');\n      botMsg.className = 'msg msg-bot';\n      botMsg.textContent = 'تم استقبال طلبك. جاري معالجة البيانات...';\n      chatBox.appendChild(botMsg);\n      chatBox.scrollTop = chatBox.scrollHeight;\n    }, 300);\n    \n    chatInput.value = '';\n    chatBox.scrollTop = chatBox.scrollHeight;\n  }\n});\n\nchatInput.addEventListener('keypress', (e) => {\n  if (e.key === 'Enter') sendChat.click();\n});\n    </script>\n  </body>\n</html>\n"
